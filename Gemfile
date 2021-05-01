@@ -13,3 +13,5 @@ gem "octopress-hooks", "~> 2.6"
 gem "git", "~> 1.5"
 
 gem "jekyll-sitemap", "~> 1.2"
+
+gem "kramdown-parser-gfm"
