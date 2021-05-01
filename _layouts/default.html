@@ -15,7 +15,7 @@
         <meta charset='utf-8'>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     </head>
-    <body>
+    <body{% if page.classes %} class="{{ page.classes }}"{% endif %}>
         <script>
             // enable dark mode
             if (document.cookie == "darkmode=true") {
@@ -28,6 +28,7 @@
             <div class="wrapper linklist">
                 <a href="https://pixienop.net" class="wordmark" title="homepage" alt="homepage">pixienop</a>
                 <a href="https://demobasics.pixienop.net" title="demoscene basics" alt="demoscene basics">demoscene basics</a>
+                <a href="/tweetcarts/" title="tweetcart study" alt="tweetcart study">tweetcart study</a>
             </div>
         </nav>
         <div id="wrapper">

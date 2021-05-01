@@ -1,4 +1,94 @@
 tweetcarts:
+  bluevirtigo:
+    tweetcode: |-
+      fillp(23130)s=sin::_::for r=16,128 do
+      pal(r%6,({-15,1,-13,-4,12,6,7})[r%6],1)j=16/r+t()/8p=64+r/4*cos(j)q=64+r/4*s(j)circ(p,q,30-r,0)g,h=p+r,q
+      for u=0,1,r/1400 do
+      w=s(u)k=abs(s(u*2+j+s(j))-w)*min(r/20,3)l=r-k
+      x=p+l*cos(u)y=q+w*l
+      line(g,h,x,y,k+flr(k+.5)*16)g,h=x,y
+      end
+      end
+      goto _
+
+    studycode: |-
+      -- typical 0101,1010 fill, in binary it looks like this:
+      --    0101
+      --    1010
+      --    0101
+      --    1010
+      fillp(23130)
+
+      ::_::
+
+      -- loop through every radius from 16 to 128
+      for r=16,128 do
+        -- nice colour ramp.
+        -- negative numbers are a short way to access the
+        --  secret palette
+        pal(r%6,({-15,1,-13,-4,12,6,7})[r%6],1)
+
+        -- the time, offset by where in the tunnel we're
+        --  currently drawing. deeper into the tunnel is
+        --  future in time
+        j=16/r+t()/8
+
+        -- x centre of tunnel
+        p=64+r/4*cos(j)
+        -- y centre of tunnel
+        q=64+r/4*sin(j)
+
+        -- black centre circle.
+        -- circ() ignores when r<0
+        circ(p,q,30-r,0)
+
+        -- g,h==x,y points for the initial line segment below
+        g,h=p+r,q
+
+        -- loop 0->1 on each radius from middle to outside of
+        --  the tunnel
+        for u=0,1,r/1600 do
+          w=sin(u)
+
+          -- k == the plasma for this line seg. of the tunnel
+          --
+          -- abs(sin(u*3+j+sin(j))-w) is a typical plasma
+          --  pattern, just throw sin/cos on top of each other
+          --  until it looks good~!
+          -- `u` is where we are around the circle so the u*3
+          --  affects how many separate 'tentacles' we have.
+          -- `j` is time relative to how deep in the tunnel we
+          --  are.
+          --
+          -- *min(r/20,3) because the pattern gets more
+          --  vibrant (the brighter colours are added) as the
+          --  tunnel gets closer to the camera
+          k=abs(sin(u*3+j+sin(j))-w)*min(r/20,3)
+
+          -- l == current radius of the tunnel, this changes
+          --  based on the plasma value and is why the
+          --  brighter colours stick out towards the centre of
+          --  the tunnel, while the darker colours sink into
+          --  the walls
+          l=r+k
+
+          -- centre of the tunnel + _current_ radius * cos(u)
+          x=p+l*cos(u)
+          -- centre of the tunnel + _current_ radius * sin(u)
+          y=q+w*l
+
+          -- draw this line segment
+          line(g,h,x,y,k+flr(k+.5)*16)
+
+          -- draw from this line segment to the next~
+          g,h=x,y
+        end
+      end
+
+      -- since this goes to 130% cpu use, no need to use flip!
+
+      goto _
+
   moonandreflection:
     tweetcode: |-
       cls()
@@ -43,13 +133,13 @@ tweetcarts:
         -- in the distance they're super short, and they get
         --  longer as they come closer 77 -> 0, ~exponentially
         z=77/(y+1)
-        
+
         -- z*8 random lines per y
         --
         -- some of these overlap and are going different
         --  speeds, which helps sell the shifting water effect
         for i=0,z*8 do
-          
+
           -- x position of this line
           --
           -- rnd(160) is the base speed, and because we always
@@ -63,11 +153,11 @@ tweetcarts:
           -- -16 so that rather than the full lines popping in
           --  on the left, they slide into the frame nicely
           x=(rnd(160)+t()*150/z)%160-16
-          
+
           -- the width of the line, standard random-ish cos()
           --  that's smaller towards the horizon
           w=cos(rnd()+t())*12/z
-          
+
           -- only draw when the width is over zero, fun~
           if (w>0) then
             -- max(1,pget(x,49-y/2) means that the colour will
@@ -89,88 +179,69 @@ tweetcarts:
 
       goto _
 
-  bluevirtigo:
+  rainbowtentacles:
     tweetcode: |-
-      fillp(23130)s=sin::_::for r=16,128 do
-      pal(r%6,({-15,1,-13,-4,12,6,7})[r%6],1)j=16/r+t()/8p=64+r/4*cos(j)q=64+r/4*s(j)circ(p,q,30-r,0)g,h=p+r,q
-      for u=0,1,r/1400 do
-      w=s(u)k=abs(s(u*2+j+s(j))-w)*min(r/20,3)l=r-k
-      x=p+l*cos(u)y=q+w*l
-      line(g,h,x,y,k+flr(k+.5)*16)g,h=x,y
+      p={9,137,136,2,141,12,140,1,129,131,3,139,11,138,10,135}for i,c in pairs(p) do
+      pal(i-1,c,1)end
+      cm=0::w:: cm+=1cls(8)st=t()
+      for b=0,2 do
+      for i=1,190 do
+      x=b*30j=x+i
+      k=40+b*40-20+sin(i*.02+st*.2)*(3+b*5)w=i*.3circfill(j,k,w,i*cos(st*.05)+cm)pset(j-w*.7,k-w*.7,cm)end
       end
-      end
-      goto _
-    
+      flip()goto w
+
     studycode: |-
-      -- typical 0101,1010 fill
-      fillp(23130)
+      -- colours that make up the rainbow pattern
+      p={9,137,136,2,141,12,140,1,129,131,3,139,11,138,10,135}
+      -- make 0->15 on the screen render as a rainbow
+      for i,c in pairs(p) do
+        pal(i-1,c,1)
+      end
 
-      ::_::
+      -- colour movement adjuster
+      cm=0
 
-      -- loop through every radius from 16 to 128
-      for r=16,128 do
-        -- nice colour ramp.
-        -- negative numbers is short way to access the
-        --  secret palette
-        pal(r%6,({-15,1,-13,-4,12,6,7})[r%6],1)
+      ::w::
+      -- every frame, the colours move 1 further along the
+      --  tentacles with this variable
+      cm+=1
 
-        -- the time, offset by where in the tunnel we're
-        --  currently drawing. deeper into the tunnel is
-        --  future in time
-        j=16/r+t()/8
-        
-        -- x centre of tunnel
-        p=64+r/4*cos(j)
-        -- y centre of tunnel
-        q=64+r/4*sin(j)
-        
-        -- black centre circle.
-        -- circ() ignores when r<0
-        circ(p,q,30-r,0)
-        
-        -- g,h==x,y points for the initial line segment below
-        g,h=p+r,q
-        
-        -- loop 0->1 on each radius from middle to outside of
-        --  the tunnel
-        for u=0,1,r/1600 do
-          w=sin(u)
-          
-          -- k == the plasma for this line seg. of the tunnel
-          --
-          -- abs(sin(u*3+j+sin(j))-w) is a typical plasma
-          --  pattern, just throw sin/cos on top of each other
-          --  until it looks good~!
-          -- `u` is where we are around the circle so the u*3
-          --  affects how many separate 'tentacles' we have.
-          -- `j` is time relative to how deep in the tunnel we
-          --  are.
-          --
-          -- *min(r/20,3) because the pattern gets more
-          --  vibrant (the brighter colours are added) as the
-          --  tunnel gets closer to the camera
-          k=abs(sin(u*3+j+sin(j))-w)*min(r/20,3)
+      -- dark blue background
+      cls(8)
 
-          -- l == current radius of the tunnel, this changes
-          --  based on the plasma value and is why the
-          --  brighter colours stick out towards the centre of
-          --  the tunnel, while the darker colours sink into
-          --  the walls
-          l=r+k
+      -- current time
+      st=t()
 
-          -- centre of the tunnel + _current_ radius * cos(u)
-          x=p+l*cos(u)
-          -- centre of the tunnel + _current_ radius * sin(u)
-          y=q+w*l
-          
-          -- draw this line segment
-          line(g,h,x,y,k+flr(k+.5)*16)
-          
-          -- draw from this line segment to the next~
-          g,h=x,y
+      -- 0,1,2 - loop and create three tentacles
+      for b=0,2 do
+        -- loop through each 'slice' of the tentacle, from 
+        --  the smallest circles at the tip, to the big ones
+        --  on the right side of the screen
+        for i=1,190 do
+          -- move the tip of the tentacle 30 pixels to the
+          --  right for each one
+          x=b*30
+          -- (x) midpoint of this slice
+          j=x+i
+          -- (y) midpoint of this slice
+          k=40+b*40-20+sin(i*.02+st*.2)*(3+b*5)
+          -- width of this slice - very thin at the tip and
+          --  much wider at the base
+          w=i*.3
+          -- draw the circle for this slice of tentacle
+          circfill(j,k,w,i*cos(st*.05)+cm)
+          -- draw the tiny 'ridge' that follows the tentacle
+          --  along and shows its form off some more
+          pset(j-w*.7,k-w*.7,cm)
         end
       end
-
-      -- since this goes to 130% cpu use, no need to use flip!
-
-      goto _
+      -- flip() ensures that frames are written consistently,
+      --  since this tweetcart takes up much less than 100%
+      --  of the cpu time and redraws the whole screen with
+      --  every run.
+      -- if flip isn't used here, pico-8 will just grab new
+      --  frames whenever, even when they're halfway through
+      --  being drawn
+      flip()
+      goto w
