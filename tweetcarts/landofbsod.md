@@ -1,7 +1,6 @@
 ---
 layout: tweetcart
 title: In the land of BSOD - PICO-8 Tweetcart Studies
-wip: true
 ---
 
 ## In the land of BSOD
@@ -12,7 +11,7 @@ _Link: [https://twitter.com/von_rostock/status/1327057028825698304](https://twit
 <img class="screenie" src="/img/tweetcarts/landofbsod.gif" alt="In the land of BSOD">
 
 #### Display Palette
-{% include pico8-palette.html colours="-4,12,6,7,7,7,-13,3,-5,-6" %}
+{% include pico8-palette.html colours="0,-4,12,6,7,7,7,-13,3,-5,-6" %}
 
 #### Summary
 This tweetcart does a lot of processing on each pixel. Each loop only sets the colour of a single random pixel, so it takes some time to get every pixel on the screen filled with a real value.
@@ -34,7 +33,12 @@ Most pico-8 games call `cls()` at the start of every frame, but this effect just
 
 <div>
 <img src="/img/tweetcarts/landofbsod-cleanframe.gif">
-<p>Rendering a single full frame (notice how we don't see the dithering that's present in the full effect, because we're not rendering any separate pixels afterwards).</p>
+<p>Rendering a single complete frame. We don't see the dithering that's present in the full effect because we're not rendering any pixels on top.</p>
+</div>
+
+<div>
+<img src="/img/tweetcarts/landofbsod-2not6.gif">
+<p>The effect with <code>i=0,2</code> instead of the regular <code>i=0,6</code>. Less iterations and layers of <code>sin()</code>s means a more basic gradient for the plasma.</p>
 </div>
 
 </div>

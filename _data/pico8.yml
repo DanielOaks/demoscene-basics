@@ -150,12 +150,42 @@ tweetcarts:
 
       -- start drawing a pixel
       ::_::
+      -- which random pixel are we rendering?
       x=rnd(128)
-      m=78+sin(x/192)*8
       y=rnd(96)
+      -- this is the curve of the hill, just a gentle sin()
+      m=78+sin(x/192)*8
+
+      -- here's where we generate the patterns for the
+      --  mountains and clouds.
+      -- this effect is basically a bunch of sin()s tossed on
+      --  top of each other (same as a normal plasma).
+      --
+      -- w is the X input to the plasma. however, it also
+      --  affects the intensity of the end result (a higher
+      --  'w' will result in more colours at the higher-end
+      --  of the result). the ground is x/6 - pretty small so
+      --  you get a long pattern. the sky is x/2 - much larger
+      --  so the pattern gets condensed and is more intense,
+      --  which is compensated for by adding the extra couple
+      --  of white colours to the display palette :D
+      --
+      -- g is the 'density' of the random sins that get added
+      --  on top. we start out with some just basic sins, and
+      --  each of those 'i=0,6' loops below adds another layer
+      --  of slightly-denser random values
+      --
+      -- 'i=0,6' means that 6 layers of more-specific sins are
+      --  added on top of each other. you can see in the loop,
+      --  with each layer 'g' gets doubled, and 'g' is used
+      --  as a modifier in the sin calls.
+      --
+      -- k stores the output colour
+
+      -- ground's x input
       w=x/6
+      -- sky's x input, includes t() because the sky moves
       if(y<m) then
-        n=1
         w=x/2+t()*2
       end
       g=y/512
@@ -164,14 +194,39 @@ tweetcarts:
         g*=2
         k+=.6^i*(sin(sin(g/2)/2-g*w/y)+sin(g))
       end
+
+      -- convert k into a value that fits our palette.
+      -- the +7 here shifts it to the green ground colours
+      --  in our display palette
       k=abs(k^3)+7
+      -- post-processing on the sky's colour value
       if (y<m) then
+        -- because the initial 'w' value is so much higher for
+        --  the sky, we need to do the /4 on 'k' to make it
+        --  usable.
+        -- the k/4 shifts it halfway, and the 7/4 shifts it
+        --  the other half, down so the min value is now 0.
+        --  then the +1 shifts it up so the minimum value is
+        --  1 (because that's where our nice blue gradient
+        --  starts in the display palette).
         k=min(k/4-7/4,4)+1
       end
+
+      -- make blue border at the bottom of the screen
       if(y>93) then
         k=1
       end
-      pset(x,16+y,k+(k+.5)\1*16)
+
+      -- add the second colour for the fill pattern.
+      -- the \1 is a short way to do flr() (see 'Integer
+      --  Division') in the pico-8 manual).
+      -- the *16 shifts it up - the high bits of the colour
+      --  parameter are where the second colour lives.
+      k+=((k+.5)\1)*16
+
+      -- and finally, show the pixel!
+      pset(x,16+y,k)
+
       goto _
 
   moonandreflection:
@@ -276,7 +331,7 @@ tweetcarts:
       twitter: pixienop
     tweetcode: |-
       pal({12,1,2,-8,8,14,15,-1,-7,9,10},1)::w::st=t()/2for i=1,250 do
-      st -= .001+sin(st/5)*.003x=64+sin(st)*30y=64+cos(st)*30circ(x,y,i/2,(i*.044-t()*10)%11+1)end
+      st -= .001+sin(st/5)*.003circ(64+sin(st)*30,64+cos(st)*30,i/2,(i*.044-t()*10)%11+1)end
       flip()goto w
 
     studycode: |-
