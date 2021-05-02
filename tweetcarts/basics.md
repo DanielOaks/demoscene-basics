@@ -6,6 +6,8 @@ title: Basics - PICO-8 Tweetcart Studies
 ## Basics
 Here are some basic effects and techniques that are used in tweetcarts.
 
+If you're looking for some general pico-8 information, or basic effect creation, [the demobasics page](https://demobasics.pixienop.net/) goes through creating a few traditional carts from scratch.
+
 <table class="sections">
   <colgroup>
     <col class="name">
@@ -80,9 +82,9 @@ goto ♥
 
 <hr class="smol">
 
-It might look like the dithered example is too long to be useful, but it's common for intensive effects to leave out the `cls()` and render some amount of new pixels over the top of the old frame (to reduce cpu usage, etc). If you render enough new pixels, it's really hard to tell that you're doing this. And if you don't render enough, you get a cool dithery look that can seem pretty intentional.
+It might look like the dithered example is too long to be useful, but it's common for intensive effects to leave out the `cls()` and render some amount of new pixels over the top of the old frame (to still update the display while using less cpu). If you render enough new pixels, it's really hard to tell that you're doing this. And if you don't render enough, you get a cool dithery look that can seem pretty intentional.
 
-It's easiest to see this on startup, when carts that use this effect haven't populated the entire screen yet so there's lots of empty spaces.
+It's easiest to see this on startup, when carts that do this haven't populated the entire screen yet so there's lots of empty spaces.
 
 Let's modify this example just a little bit and redraw the circle after we do the `flip()`, but in a different colour:
 
@@ -153,6 +155,6 @@ For reference, here's all of the standard and the extended colours (using the mi
 
 <hr class="smol">
 
- Here are some carts that use this technique:
+ Here are some carts that do this:
 
 {% include tweetcart-grid.html carts="landofbsod,rainbowtentacles,bluevertigo" %}

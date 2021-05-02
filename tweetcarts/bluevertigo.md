@@ -14,7 +14,7 @@ _Link: [https://twitter.com/von_rostock/status/1220430044054663168](https://twit
 {% include pico8-palette.html colours="-15,1,-13,-4,12,6,7" %}
 
 #### Summary
-This is a tunnel effect that uses colours from the [secret palette](https://youtu.be/AsVzk6kCAJY).
+This is a very nice tunnel effect that uses colours from the [secret palette](https://youtu.be/AsVzk6kCAJY).
 
 Most pico-8 games call `cls()` at the start of every frame, but this effect just leaves the existing screen alone and draws over the top of it. The pictures below shows which pixels are actually drawn every frame, and also how this looks when starting up. Doing this _(instead of using `cls()` and redrawing everything)_ ensures that the screen will always be in a good-looking state, so there's no need to call `flip()` at the end of each rendering loop. See the [cls-vs-dithering page](./basics#cls-vs-dithering) for some more info on this technique.
 

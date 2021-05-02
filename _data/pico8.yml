@@ -56,6 +56,7 @@ tweetcarts:
       --    1010
       fillp(23130)
 
+      -- start rendering loop
       ::_::
 
       -- loop through every radius from 16 to 128
@@ -202,6 +203,7 @@ tweetcarts:
       -- the moon
       circfill(30,22,15,7)
 
+      -- start rendering loop
       ::_::
       flip()
 
@@ -267,6 +269,58 @@ tweetcarts:
 
       goto _
 
+  pixtunnel:
+    name: Tunnel
+    author:
+      name: Daniel Oaks
+      twitter: pixienop
+    tweetcode: |-
+      pal({12,1,2,-8,8,14,15,-1,-7,9,10},1)::w::st=t()/2for i=1,250 do
+      st -= .001+sin(st/5)*.003x=64+sin(st)*30y=64+cos(st)*30circ(x,y,i/2,(i*.044-t()*10)%11+1)end
+      flip()goto w
+
+    studycode: |-
+      -- setup the display palette
+      pal({12,1,2,-8,8,14,15,-1,-7,9,10},1)
+
+      -- start of rendering loop
+      ::w::
+      -- get initial scene time
+      st=t()/2
+
+      -- from the centre of the tunnel to the outside
+      for i=1,250 do
+        -- the centre of the tunnel is in the 'future', so the
+        --  outside of the tunnel is the past... so we minus
+        --  time as we get further from the center.
+        --
+        -- the '+sin(st/5)*.003' introduces some strange time
+        --  shifting that looks really interesting. makes it
+        --  look like the tunnel speeds up and slows down.
+        st -= .001+sin(st/5)*.003
+
+        -- centre of this part of the tunnel
+        x=64+sin(st)*30
+        y=64+cos(st)*30
+
+        -- draw the circle!
+        -- i/2 means that the circle's radius expands as we
+        --  go further out.
+        -- i*.44 because that's a nice value, -t()*10 because
+        --  that means the pattern is going away from the
+        --  center, works with the way we adjust 'st' further
+        --  up to create the *going further down the tunnel*
+        --  look! if we really wanted to we could coordinate
+        --  this with the time shifting above, but oh well.
+        -- the %11+1 at the end restricts it to the first 11
+        --  colours, and the +1 is to skip the first entry in
+        --  pico8's current screen palette (plain black)
+        circ(x,y,i/2,(i*.044-t()*10)%11+1)
+      end
+
+      flip()
+      goto w
+
   rainbowtentacles:
     name: Rainbow Tentacles
     author:
@@ -294,6 +348,7 @@ tweetcarts:
       -- colour movement adjuster
       cm=0
 
+      -- start rendering loop
       ::w::
       -- every frame, the colours move 1 further along the
       --  tentacles with this variable
