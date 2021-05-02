@@ -124,6 +124,10 @@ hr
     background: #9999bb9e
     border-radius: 2rem
     margin: 1.55rem auto
+    &.smol
+        border-color: #9999bb2e
+        background: #9999bb2e
+        width: 80%
 
 
 body
@@ -184,30 +188,30 @@ pre
         p:first-child
             font-size: 1.3em
             margin-bottom: 0.5em
-    .grid
-        display: flex
-        flex-wrap: wrap
-        flex-direction: row
-        justify-content: center
-        align-items: baseline
-        align-content: start
-        .tweetcart
+.tweetcart-grid
+    display: flex
+    flex-wrap: wrap
+    flex-direction: row
+    justify-content: center
+    align-items: baseline
+    align-content: start
+    .tweetcart
+        display: block
+        flex: 0 0 auto
+        margin: 1em
+        background: #232323
+        background: rgba(12, 12, 12, .89)
+        color: #eee
+        padding: .5em
+        border-radius: .4em
+        text-align: center
+        width: 28%
+        width: calc(30% - 1em)
+        min-width: 10em
+        img
+            width: 100%
+        span
             display: block
-            flex: 0 0 auto
-            margin: 1em
-            background: #232323
-            background: rgba(12, 12, 12, .89)
-            color: #eee
-            padding: .5em
-            border-radius: .4em
-            text-align: center
-            width: 28%
-            width: calc(30% - 1em)
-            min-width: 10em
-            img
-                width: 100%
-            span
-                display: block
 .tweetcart-start + h2
     padding-top: .25em
 .halfgrid

@@ -1,5 +1,42 @@
 tweetcarts:
-  bluevirtigo:
+  basics:
+    name: Tweetcart Basics
+    author:
+      name: Basics
+    code: |-
+      p={9,137,136,2,141,12,140,1,129,131,3,139,11,138,10,135}for i,c in pairs(p) do
+      pal(i-1,c,1)end
+
+      sc=.2
+      ::_::
+      cls()
+      rectfill(0,0,24,13,2)
+      print("twcart",1,1,1)
+      print("basics",1,8,1)
+
+      for x=0,128 do
+      for y=0,70 do
+      oc = pget(x*sc,y*sc)
+      c = 0
+      if oc == 2 then
+        c = 7
+      elseif oc == 1 then
+      c = (7+x+y)/2
+      end
+      if oc != 0 then
+        pset(x+1,y+28,c)
+      end
+      end
+      end
+
+      flip()
+      goto _
+
+  bluevertigo:
+    name: Blue Vertigo
+    author:
+      name: Michał Rostocki
+      twitter: von_rostock
     tweetcode: |-
       fillp(23130)s=sin::_::for r=16,128 do
       pal(r%6,({-15,1,-13,-4,12,6,7})[r%6],1)j=16/r+t()/8p=64+r/4*cos(j)q=64+r/4*s(j)circ(p,q,30-r,0)g,h=p+r,q
@@ -91,7 +128,56 @@ tweetcarts:
 
       goto _
 
+  landofbsod:
+    name: In the land of BSOD
+    author:
+      name: Michał Rostocki
+      twitter: von_rostock
+    tweetcode: |-
+      cls()fillp(▒\1)pal({-4,12,6,7,7,7,-13,3,-5,-6},1)s=sin::_::x=rnd(128)m=78+s(x/192)*8y=rnd(96)w=x/6
+      if(y<m)n=1w=x/2+t()*2
+      g=y/512k=0for i=0,6do g*=2k+=.6^i*(s(s(g/2)/2-g*w/y)+s(g))end
+      k=abs(k^3)+7
+      if(y<m)k=min(k/4-7/4,4)+1
+      if(y>93)k=1
+      pset(x,16+y,k+(k+.5)\1*16)goto _
+
+    studycode: |-
+      cls()
+      fillp(▒\1)
+      pal({-4,12,6,7,7,7,-13,3,-5,-6},1)
+
+      -- start drawing a pixel
+      ::_::
+      x=rnd(128)
+      m=78+sin(x/192)*8
+      y=rnd(96)
+      w=x/6
+      if(y<m) then
+        n=1
+        w=x/2+t()*2
+      end
+      g=y/512
+      k=0
+      for i=0,6 do
+        g*=2
+        k+=.6^i*(sin(sin(g/2)/2-g*w/y)+sin(g))
+      end
+      k=abs(k^3)+7
+      if (y<m) then
+        k=min(k/4-7/4,4)+1
+      end
+      if(y>93) then
+        k=1
+      end
+      pset(x,16+y,k+(k+.5)\1*16)
+      goto _
+
   moonandreflection:
+    name: Moon and Reflection
+    author:
+      name: Luca Harris
+      twitter: lucatron_
     tweetcode: |-
       cls()
       circfill(30,22,15,7)
@@ -165,8 +251,8 @@ tweetcarts:
             -- max(1,pget(x,49-y/2) means that the colour will
             --  always either be 1 (water) or the grabbed
             --  pixel colour from top.
-            -- note: most of the 'reflection' of the black sky
-            --  is really just the lines not filling in the
+            -- note: the 'reflection' of the black sky is
+            --  really just the lines not filling in the
             --  rectfill from above.
             --
             -- because x is random and the line is the same
@@ -182,6 +268,10 @@ tweetcarts:
       goto _
 
   rainbowtentacles:
+    name: Rainbow Tentacles
+    author:
+      name: Daniel Oaks
+      twitter: pixienop
     tweetcode: |-
       p={9,137,136,2,141,12,140,1,129,131,3,139,11,138,10,135}for i,c in pairs(p) do
       pal(i-1,c,1)end

@@ -1,0 +1,15 @@
+<div class="tweetcart-grid">
+
+{% assign cartids = include.carts | split:"," %}
+{% for id in cartids %}
+{% assign cart = site.data.pico8.tweetcarts[id] %}
+
+<a class="tweetcart" href="{{ id }}" title="{{ cart.name }}">
+    <img src="/img/tweetcarts/{{ id }}.png" alt="{{ cart.name }}">
+    {% if cart.author.twitter %}<span>@{{ cart.author.twitter }}</span>
+    {% elsif cart.author.name %}<span>{{ cart.author.name }}</span>{% endif %}
+</a>
+
+{% endfor %}
+
+</div>
