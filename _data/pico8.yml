@@ -85,7 +85,9 @@ tweetcarts:
         end
       end
 
-      -- since this goes to 130% cpu use, no need to use flip!
+      -- since this goes to 130% cpu use, and because the
+      --  screen should never really hit a bad-looking state
+      --  there's no need to use flip here! :D
 
       goto _
 
@@ -163,8 +165,8 @@ tweetcarts:
             -- max(1,pget(x,49-y/2) means that the colour will
             --  always either be 1 (water) or the grabbed
             --  pixel colour from top.
-            -- note: the 'reflection' of the black sky is
-            --  really just the lines not filling in the
+            -- note: most of the 'reflection' of the black sky
+            --  is really just the lines not filling in the
             --  rectfill from above.
             --
             -- because x is random and the line is the same

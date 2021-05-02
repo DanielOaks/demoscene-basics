@@ -10,4 +10,29 @@ _Link: [https://twitter.com/pixienop/status/1180997046138032129](https://twitter
 
 <img class="screenie" src="/img/tweetcarts/rainbowtentacles.gif" alt="Rainbow Tentacles">
 
+#### Summary
+The screen palette is setup so that 0->15 is a rainbow (using colours from the [secret palette](https://youtu.be/AsVzk6kCAJY)). Every pixel along the tentacle, from the tip to the base, is a separate circle so we can change what colour each one is (which lets us easily create that expanding/retracting look shown above).
+
+Because the circles 'closer to the camera' are drawn after the ones near the tip, we also make some nice overlaps that look really interesting and give a 3d look to the bottom tentacle.
+
+#### Pictures
+<div class="halfgrid">
+
+<div>
+<img src="/img/tweetcarts/rainbowtentacles-slow.gif">
+<p>Each tentacle being drawn, slowly.</p>
+</div>
+
+<div>
+<img src="/img/tweetcarts/rainbowtentacles-nopal.gif">
+<p>How the effect looks without the initial <code>pal()</code> calls to setup the rainbow.</p>
+</div>
+
+<div>
+<img src="/img/tweetcarts/rainbowtentacles-nopulse.gif">
+<p>How the effect looks without the 'pulsing'.</p>
+</div>
+
+</div>
+
 {% include tweetcart-code.html cart=site.data.pico8.tweetcarts.rainbowtentacles %}
