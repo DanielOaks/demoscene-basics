@@ -240,6 +240,100 @@ pre
             margin: 0
             + p
                 margin-top: .8em
+.pico8-palette
+    display: inline-flex
+    flex-wrap: wrap
+    flex-direction: row
+    justify-content: center
+    align-items: baseline
+    align-content: start
+    border-radius: .4em
+    overflow: hidden
+    border: 1px solid rgba(20,20,20,.9)
+    + .pico8-palette
+        margin-top: 1em
+    > div
+        padding: .6em 1em
+        background: #000
+        font-weight: 600
+        color: #111
+        &.p8-0
+            background-color: #000
+            color: #eee
+        &.p8-1
+            background-color: #1d2b53
+            color: #eee
+        &.p8-2
+            background-color: #7e2553
+            color: #eee
+        &.p8-3
+            background-color: #008751
+            color: #eee
+        &.p8-4
+            background-color: #ab5236
+        &.p8-5
+            background-color: #5f574f
+        &.p8-6
+            background-color: #c2c3c7
+        &.p8-7
+            background-color: #fff1e8
+        &.p8-8
+            background-color: #ff004d
+        &.p8-9
+            background-color: #ffa300
+        &.p8-10
+            background-color: #ffec27
+        &.p8-11
+            background-color: #00e436
+        &.p8-12
+            background-color: #29adff
+        &.p8-13
+            background-color: #83769c
+        &.p8-14
+            background-color: #ff77a8
+        &.p8-15
+            background-color: #ffccaa
+        &.p8-128, &.p8--16
+            background-color: #291814
+            color: #eee
+        &.p8-129, &.p8--15
+            background-color: #111D35
+            color: #eee
+        &.p8-130, &.p8--14
+            background-color: #422136
+            color: #eee
+        &.p8-131, &.p8--13
+            background-color: #125359
+            color: #eee
+        &.p8-132, &.p8--12
+            background-color: #742F29
+            color: #eee
+        &.p8-133, &.p8--11
+            background-color: #49333B
+            color: #eee
+        &.p8-134, &.p8--10
+            background-color: #A28879
+        &.p8-135, &.p8--9
+            background-color: #F3EF7D
+        &.p8-136, &.p8--8
+            background-color: #BE1250
+            color: #eee
+        &.p8-137, &.p8--7
+            background-color: #FF6C24
+        &.p8-138, &.p8--6
+            background-color: #A8E72E
+        &.p8-139, &.p8--5
+            background-color: #00B543
+        &.p8-140, &.p8--4
+            background-color: #065AB5
+            color: #eee
+        &.p8-141, &.p8--3
+            background-color: #754665
+            color: #eee
+        &.p8-142, &.p8--2
+            background-color: #FF6E59
+        &.p8-143, &.p8--1
+            background-color: #FF9D81
 
 // dark mode button
 #darkmodebtn

@@ -10,6 +10,9 @@ _Link: [https://twitter.com/von_rostock/status/1220430044054663168](https://twit
 
 <img class="screenie" src="/img/tweetcarts/bluevertigo.gif" alt="Blue Vertigo">
 
+#### Display Palette
+{% include pico8-palette.html colours="-15,1,-13,-4,12,6,7" %}
+
 #### Summary
 This is a tunnel effect that uses colours from the [secret palette](https://youtu.be/AsVzk6kCAJY).
 

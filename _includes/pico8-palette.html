@@ -1,0 +1,6 @@
+<div class="pico8-palette">
+
+{% assign colourids = include.colours | split:"," %}
+{% for id in colourids %}<div class="p8-{{id}}">{{id}}</div>{% endfor %}
+
+</div>

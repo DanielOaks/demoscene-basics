@@ -11,6 +11,9 @@ _Link: [https://twitter.com/von_rostock/status/1327057028825698304](https://twit
 
 <img class="screenie" src="/img/tweetcarts/landofbsod.gif" alt="In the land of BSOD">
 
+#### Display Palette
+{% include pico8-palette.html colours="-4,12,6,7,7,7,-13,3,-5,-6" %}
+
 #### Summary
 This tweetcart does a lot of processing on each pixel. Each loop only sets the colour of a single random pixel, so it takes some time to get every pixel on the screen filled with a real value.
 
