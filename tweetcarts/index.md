@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: default-tc
 title: PICO-8 Tweetcart Studies
 classes: tweetcart-titlepage
 ---
@@ -16,6 +16,6 @@ classes: tweetcart-titlepage
 
 -----
 
-{% include tweetcart-grid.html carts="basics,bluevertigo,moonandreflection,rainbowtentacles,pixtunnel,landofbsod,prideflags" %}
+{% include tweetcart-grid.html carts="basics,bluevertigo,moonandreflection,rainbowtentacles,pixtunnel,landofbsod,prideflags,owlhousespell" %}
 
 -----

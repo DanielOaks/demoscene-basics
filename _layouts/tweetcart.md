@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: default-tc
 classes: tweetcart
 ---
 {% capture md %}

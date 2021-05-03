@@ -11,7 +11,7 @@ _Link: [https://twitter.com/von_rostock/status/1220430044054663168](https://twit
 <img class="screenie" src="/img/tweetcarts/bluevertigo.gif" alt="Blue Vertigo">
 
 #### Display Palette
-{% include pico8-palette.html colours="-15,1,-13,-4,12,6,7" %}
+{% include pico8-palette.html colours="0,-15,1,-13,-4,12,6,7" %}
 
 #### Summary
 This is a very nice tunnel effect that uses colours from the [secret palette](https://youtu.be/AsVzk6kCAJY). It's basically a plasma with the intensity of the colours boosted for the segments closer to the camera.

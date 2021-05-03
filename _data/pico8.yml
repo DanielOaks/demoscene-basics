@@ -324,6 +324,80 @@ tweetcarts:
 
       goto _
 
+  owlhousespell:
+    name: Owl House Spell
+    author:
+      name: bean borg
+      twitter: beanborg
+    tweetcode: |-
+      i=63c=circ l=line::_::flip()a=t()/3if(a>1)memcpy(24576,24640,8127)for i=0,999do c(rnd(128),rnd(128),1,0)end c(i,i,60,10)
+      c(i+60*sin(a),i+60*cos(a),1)c(i,i,49)c(i,39,9)l(i,111,i,49)l(54,39,i,15)l(72,39)l(60,49,18,83)l(108,83)l(66,49)l(55,77,70,70)l(55,70,70,i)goto _
+
+    studycode: |-
+      -- the default colour when running carts is grey (6),
+      --  and that colour's used until the draw call below
+      --  (that only runs after the outer circle gets
+      --  completed) sets it to yellow (10)
+
+      -- centre of the circle (x and y)
+      i=63
+
+      -- start the rendering loop
+      ::_::
+      flip()
+
+      -- current time
+      a=t()/3
+
+      -- do this after we've drawn the whole circle! this
+      --  works because we draw the circle based on 'a' too.
+      if (a>1) then
+        -- shift the screen up 1 pixel
+        memcpy(24576,24640,8127)
+
+        -- pixely fadeout!
+        for i=0,999 do
+          circ(rnd(128),rnd(128),1,0)
+        end
+
+        -- outer circle! the '10' here sets the colour to
+        --  yellow, and that colour's used for all of the draw
+        --  calls in the cart from now on, too (well, the
+        --  pixely fadeout above sets the default colour to 0,
+        --  but this sets it back to 10 right after that).
+        circ(i,i,60,10)
+      end
+
+      -- draw the tiny circles.
+      --
+      -- so this is interesting! because cls() is never
+      --  called, this one circ() call allows us to draw all
+      --  of the little circles around the border. each new
+      --  one is a brand-new circle in a different place and
+      --  we just keep seeing the old, already-drawn ones.
+      -- then when the fire-effect happens, all the old
+      --  circles disappear into a puff of flames, gone with
+      --  the wind
+      circ(i+60*sin(a),i+60*cos(a),1)
+
+      -- draw the background pattern.
+      -- keep in mind, for the line() calls, that the cursor
+      --  stays where the last draw happened, and starts from
+      --  that point for the line calls that only contain a
+      --  new x and y
+      circ(i,i,49)
+      circ(i,39,9)
+      line(i,111,i,49)
+      line(54,39,i,15)
+      line(72,39)
+      line(60,49,18,83)
+      line(108,83)
+      line(66,49)
+      line(55,77,70,70)
+      line(55,70,70,i)
+
+      goto _
+
   pixtunnel:
     name: Tunnel
     author:

@@ -14,7 +14,7 @@ _Link: [https://twitter.com/pixienop/status/1271731359032111105](https://twitter
 {% include pico8-palette.html colours="0,8,10,12,136,141,1,5,14,7,137,2" %}
 
 #### Summary
-This is a pretty cute effect that draws a bunch of flags on the screen! It stores the flag colours in a string, then extracts each colour using `ord()` (props to [@beanborg](https://twitter.com/beanborg/status/1271798680610373632) for pointing me to that function).
+This is a pretty cute cart that draws a bunch of flags on the screen! It stores the flag colours in a string, then extracts each colour using `ord()` (props to [@beanborg](https://twitter.com/beanborg/status/1271798680610373632) for pointing me to that function).
 
 Instead of `cls()`, it writes a random number of black pixels all over the screen, which creates this interesting dithered trail behind each flag. See the [cls-vs-dithering page](./basics#cls-vs-dithering) for some more info on this.
 
