@@ -16,7 +16,7 @@ _Link: [https://twitter.com/von_rostock/status/1327057028825698304](https://twit
 #### Summary
 This lovely tweetcart is actually a fairly simple effect - just two plasmas! A fairly tame plasma for the hill, and a more intense one for the sky (each one set to use different colours).
 
-If you're unfamiliar with plasmas, it's an effect where you keep throwing different `sin`, `cos`, and similar functions on top of each other until you get a random-looking, but **contiguous**, output. [This page](https://lodev.org/cgtutor/plasma.html) has a fairly nice set of example plasmas along with code to look at.
+If you're unfamiliar with plasmas, it's an effect where you keep throwing different `sin`, `cos`, and similar functions on top of each other until you get a random-looking, but **contiguous**, output.  See the [plasmas page](./basics#plasmas) for some more info on this effect.
 
 This tweetcart does a lot of processing on each pixel. Each loop only sets the colour of a single random pixel, so it takes some time to get every pixel on the screen filled with a real value.
 

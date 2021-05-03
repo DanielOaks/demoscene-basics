@@ -16,7 +16,7 @@ _Link: [https://twitter.com/von_rostock/status/1220430044054663168](https://twit
 #### Summary
 This is a very nice tunnel effect that uses colours from the [secret palette](https://youtu.be/AsVzk6kCAJY). It's basically a plasma with the intensity of the colours boosted for the segments closer to the camera.
 
-If you're unfamiliar with plasmas, it's an effect where you keep throwing different `sin`, `cos`, and similar functions on top of each other until you get a random-looking, but **contiguous**, output. [This page](https://lodev.org/cgtutor/plasma.html) has a fairly nice set of example plasmas along with code to look at.
+If you're unfamiliar with plasmas, it's an effect where you keep throwing different `sin`, `cos`, and similar functions on top of each other until you get a random-looking, but **contiguous**, output. See the [plasmas page](./basics#plasmas) for some more info on this effect.
 
 Most pico-8 games call `cls()` at the start of every frame, but this effect just leaves the existing screen alone and draws over the top of it. The pictures below shows which pixels are actually drawn every frame, and also how this looks when starting up. Doing this _(instead of using `cls()` and redrawing everything)_ ensures that the screen will always be in a good-looking state, so there's no need to call `flip()` at the end of each rendering loop. See the [cls-vs-dithering page](./basics#cls-vs-dithering) for some more info on this technique.
 

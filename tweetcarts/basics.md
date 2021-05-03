@@ -114,6 +114,8 @@ When your function starts getting complex, you need to make less calculations an
 
 You'll see this effect used all the time in the demoscene and in tweetcarts because it's easy to use and adjust (just change the values that you put into `sin` and `cos`, and adjust what you multiply/divide it all by). With enough tweaking, you can end up with something that looks like clouds, a twisty pattern for a tunnel – lots of different applications!
 
+[This page](https://lodev.org/cgtutor/plasma.html) also has some interesting information and examples of plasmas.
+
 <hr class="smol">
 
 Here are some carts that use this effect:
