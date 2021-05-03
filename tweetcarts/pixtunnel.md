@@ -14,7 +14,7 @@ _Link: [https://twitter.com/pixienop/status/1180850535026421765](https://twitter
 {% include pico8-palette.html colours="12,1,2,-8,8,14,15,-1,-7,9,10" %}
 
 #### Summary
-This is a tunnel that only uses simple circles. To fill in the empty space, it doesn't call `cls()` at the start of each frame and uses the colours that already exist on the screen (see the [cls-vs-dithering page](./basics#cls-vs-dithering) for some more info on this technique)
+This is a tunnel that only uses simple circles. To fill in the empty space, it doesn't call `cls()` at the start of each frame and uses the colours that already exist on the screen (see the [cls-vs-dithering page](./basics#cls-vs-dithering) for some more info on this technique).
 
 #### Pictures
 <div class="halfgrid">

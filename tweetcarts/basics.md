@@ -16,6 +16,16 @@ If you're looking for some general pico-8 information, or basic effect creation,
   <tbody>
     <tr class="h1">
       <td>
+        <a href="#plasmas">Plasmas</a>
+      </td>
+      <td>
+        <p>
+          Describes plasma effects, how they work and how to create them!
+        </p>
+      </td>
+    </tr>
+    <tr class="h1">
+      <td>
         <a href="#cls-vs-dithering">cls() vs dithering</a>
       </td>
       <td>
@@ -41,7 +51,78 @@ If you're looking for some general pico-8 information, or basic effect creation,
 -----
 
 
-### cls() vs dithering
+## Plasmas
+A plasma is a sort of noise function. Specifically, it's a **contiguous** noise function, meaning that there's a smooth flow between values. Compare these two examples:
+
+<div class="halfgrid">
+
+<div>
+<img src="/img/tweetcarts/basics-plasma-1.png">
+<p>non-contiguous noise</p>
+<a href="javascript:;" onclick="navigator.clipboard.writeText('pal({9,137,136,2,141,12,140,1,129,131,3,139,11,138,10,135},1)::w::for x=0,127do for y=0,127 do\nk=rnd(16)pset(x,y,k)end\nend\ngoto w')">copy code to clipboard</a>
+</div>
+
+<div>
+<img src="/img/tweetcarts/basics-plasma-2.png">
+<p>contiguous noise</p>
+<a href="javascript:;" onclick="navigator.clipboard.writeText('pal({9,137,136,2,141,12,140,1,129,131,3,139,11,138,10,135},1)::w::for x=0,127 do for y=0,127 do k=(sin(x/160)+cos(y/220)+sin(x/74)/4+sin(y/22)/10)*16pset(x,y,k)end\nend\ngoto w')">copy code to clipboard</a>
+</div>
+
+</div>
+
+The first example is created just by calling `rnd()` on each pixel - no pixels relate to each other, it's like TV static.
+
+The second example is created with a series of `sin` and `cos` functions, so there is a smooth relationship between these pixels.
+
+<hr class="smol">
+
+Plasmas get more complex as you add more `sin()` and `cos()` (and other) functions to them, and get very interesting when you start including time! Take a look at how this plasma changes as we add more functions on top:
+
+<div class="halfgrid">
+
+<div>
+<img src="/img/tweetcarts/basics-plasma-ex1.gif">
+<p><code>sin(x/160 + t()/2) + cos(y/220)</code></p>
+<a href="javascript:;" onclick="navigator.clipboard.writeText('pal({9,137,136,2,141,12,140,1,129,131,3,139,11,138,10,135},1)cls(8)b=21::w::for x=b,127-b do\nfor y=b,127-b do\nk=(sin(x/160+t()/2)+cos(y/220))*16pset(x,y,k)end\nend\ngoto w')">copy code to clipboard</a>
+</div>
+
+<div>
+<img src="/img/tweetcarts/basics-plasma-ex2.gif">
+<p><code>+ sin(x/120)/2</code></p>
+<a href="javascript:;" onclick="navigator.clipboard.writeText('pal({9,137,136,2,141,12,140,1,129,131,3,139,11,138,10,135},1)cls(8)b=25::w::for x=b,127-b do\nfor y=b,127-b do\nk=(sin(x/160+t()/2)+cos(y/220)+sin(x/120)/2)*16pset(x,y,k)end\nend\ngoto w')">copy code to clipboard</a>
+</div>
+
+<div>
+<img src="/img/tweetcarts/basics-plasma-ex3.gif">
+<p><code>+ cos(y/72 - t())/5</code></p>
+<a href="javascript:;" onclick="navigator.clipboard.writeText('pal({9,137,136,2,141,12,140,1,129,131,3,139,11,138,10,135},1)cls(8)b=30::w::for x=b,127-b do\nfor y=b,127-b do\nk=(sin(x/160+t()/2)+cos(y/220)+sin(x/120)/2+cos(y/72-t())/5)*16pset(x,y,k)end\nend\ngoto w')">copy code to clipboard</a>
+</div>
+
+<div>
+<img src="/img/tweetcarts/basics-plasma-ex4.gif">
+<p><code>+ cos(x/70 + y/40 + t())/5</code></p>
+<a href="javascript:;" onclick="navigator.clipboard.writeText('pal({9,137,136,2,141,12,140,1,129,131,3,139,11,138,10,135},1)cls(8)b=34::w::for x=b,127-b do\nfor y=b,127-b do\nk=(sin(x/160+t()/2)+cos(y/220)+sin(x/120)/2+cos(y/72-t())/5+cos(x/70+y/40+t())/5)*16pset(x,y,k)end\nend\ngoto w')">copy code to clipboard</a>
+</div>
+
+</div>
+
+Notice that with each added function, the pattern gets more interesting. The amount of pixels we can render while staying at 30fps also gets smaller (see the border getting larger each time).
+
+When your function starts getting complex, you need to make less calculations and stretch your plasma. The [landofbsod cart](./landofbsod) calculates enough new pixels that you get the gist of the movement (and the non-calculated pixels end up looking like bits of stray cloud). The [bluevertigo cart](./bluevertigo) calculates the colour of a single point and then applies that colour to an entire line segment. Lots of ways to stretch the effect so it covers the whole screen!
+
+<hr class="smol">
+
+You'll see this effect used all the time in the demoscene and in tweetcarts because it's easy to use and adjust (just change the values that you put into `sin` and `cos`, and adjust what you multiply/divide it all by). With enough tweaking, you can end up with something that looks like clouds, a twisty pattern for a tunnel – lots of different applications!
+
+<hr class="smol">
+
+Here are some carts that use this effect:
+
+{% include tweetcart-grid.html carts="landofbsod,bluevertigo" %}
+
+
+
+## cls() vs dithering
 Whenever you start a new frame, you can either call `cls()` to clear the screen, or you can just clear part of the screen. If you only clear part of the screen, you end up with an interesting dithered effect that can enhance how your scene looks.
 
 <hr class="smol">
@@ -111,10 +192,8 @@ Now that looks really intentional! Here are some carts that use this technique:
 {% include tweetcart-grid.html carts="bluevertigo,landofbsod" %}
 
 
------
 
-
-### Changing The Display Palette
+## Changing The Display Palette
 Here's pico-8's default display palette:
 {% include pico8-palette.html colours="0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15" %}
 

@@ -2,7 +2,7 @@ tweetcarts:
   basics:
     name: Tweetcart Basics
     author:
-      name: Basics
+      name: Tweetcart Basics
     code: |-
       p={9,137,136,2,141,12,140,1,129,131,3,139,11,138,10,135}for i,c in pairs(p) do
       pal(i-1,c,1)end
@@ -123,10 +123,8 @@ tweetcarts:
         end
       end
 
-      -- since this goes to 130% cpu use, and because the
-      --  screen should never really hit a bad-looking state
+      -- because the screen never hits a bad-looking state,
       --  there's no need to use flip here! :D
-
       goto _
 
   landofbsod:
@@ -227,6 +225,8 @@ tweetcarts:
       -- and finally, show the pixel!
       pset(x,16+y,k)
 
+      -- because the screen never hits a bad-looking state,
+      --  there's no need to use flip here! :D
       goto _
 
   moonandreflection:
@@ -373,6 +373,90 @@ tweetcarts:
         circ(x,y,i/2,(i*.044-t()*10)%11+1)
       end
 
+      -- display this frame to the screen. if we didn't use
+      --  flip here, pico-8 would just grab new frames
+      --  whenever, even if they're not finished yet
+      flip()
+      goto w
+
+  prideflags:
+    name: Pride Flags
+    author:
+      name: Daniel Oaks
+      twitter: pixienop
+    tweetcode: |-
+      pal({8,10,12,136,141,1,5,14,7,137,2},1)n=rnd
+      f="123456389:9;29579;"::w::r=t()
+      srand(r)for i=0,3300 do pset(n(128),n(128),0)end
+      srand()for j=0,70 do
+      y=n(120)+sin(r/3+n())*8k=n(6)\1*3x=(n(200)-r*n(50))%200-3for i=1,3 do
+      line(x,i+y,x+3,i+y,ord(f,k+i))end
+      end
+      flip()goto w
+
+    studycode: |-
+      -- setup display palette
+      pal({8,10,12,136,141,1,5,14,7,137,2},1)
+
+      -- flags - each three characters is a flag.
+      --
+      -- e.g. 123 are the first three chars on the screen,
+      --  which here is the pan flag (red,yellow,blue).
+      -- the : and ; are actually 10 and 11 - you can see this
+      --  if you do 'print(chr(*))' with 57, 58, 59, or just
+      --  check out an ascii chart.
+      f="123456389:9;29579;"
+
+      -- start of rendering loop
+      ::w::
+
+      -- dithered pixely fade-out. could do a cls() instead,
+      --  but this looks pretty!
+      srand(t())
+      for i=0,3300 do
+        pset(rnd(128),rnd(128),0)
+      end
+
+      -- seed rnd() calls to a consistent set of values, so
+      --  each frame all the following rnd() calls will return
+      --  the same values
+      srand()
+
+      -- 70 flags
+      for j=0,70 do
+        -- selecting which flag to use.
+        -- rnd(6)\1 is equivalent to flr(rnd(6)) .
+        -- and *3 because there's three colours in each flag
+        k=rnd(6)\1*3
+
+        -- simple up/down sin wave for the flag's height
+        y=rnd(120)+sin(t()/3+rnd())*8
+
+        -- x position of the flag.
+        -- rnd(200) gives us our starting position.
+        -- -t()*rnd(50) adjusts the speed of each flag.
+        -- %200 wraps the flags back around to just past the
+        --  right side of the screen when it hits the left.
+        -- -3 so that the wrapping up there isn't visible, and
+        --  only happens once the flag is not visible anymore
+        x=(rnd(200)-t()*rnd(50))%200-3
+
+        -- 3 stripes in each flag
+        for i=1,3 do
+          -- where the magic happens! so, the flag string is
+          --  'f', and 'k+i' is the index of the specific
+          --  colour we want to grab out of it.
+          -- normally, we would do ord(f,k+i)-chr('0') ,
+          --  to zero out the returned character, but since
+          --  pico8's colours keep wrapping, and chr('0') is a
+          --  multiple of 16, we don't actually need to! :D
+          line(x,i+y,x+3,i+y,ord(f,k+i))
+        end
+      end
+
+      -- display this frame to the screen. if we didn't use
+      --  flip here, pico-8 would just grab new frames
+      --  whenever, even if they're not finished yet
       flip()
       goto w
 
@@ -417,7 +501,7 @@ tweetcarts:
 
       -- 0,1,2 - loop and create three tentacles
       for b=0,2 do
-        -- loop through each 'slice' of the tentacle, from 
+        -- loop through each 'slice' of the tentacle, from
         --  the smallest circles at the tip, to the big ones
         --  on the right side of the screen
         for i=1,190 do
@@ -438,12 +522,9 @@ tweetcarts:
           pset(j-w*.7,k-w*.7,cm)
         end
       end
-      -- flip() ensures that frames are written consistently,
-      --  since this tweetcart takes up much less than 100%
-      --  of the cpu time and redraws the whole screen with
-      --  every run.
-      -- if flip isn't used here, pico-8 will just grab new
-      --  frames whenever, even when they're halfway through
-      --  being drawn
+
+      -- display this frame to the screen. if we didn't use
+      --  flip here, pico-8 would just grab new frames
+      --  whenever, even if they're not finished yet
       flip()
       goto w

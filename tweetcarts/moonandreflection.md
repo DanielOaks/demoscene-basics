@@ -11,7 +11,7 @@ _Link: [https://twitter.com/lucatron_/status/1111025092236959744](https://twitte
 <img class="screenie" src="/img/tweetcarts/moonandreflection.gif" alt="Moon and Reflection">
 
 #### Summary
-This effect is a lot of lines of different lengths moving at different speeds (and wrapping back around to the left). The colour for each line is either 1 (the water colour) or is selected from the top of the screen.
+This effect is a lot of lines of different lengths moving at different speeds (and wrapping back around to the left). The colour for each line is either 1 (the water colour), or the moon colour selected from the top of the screen.
 
 `srnd()` seeds the random number generator on every frame, and this is used to get a set of random, but **consistent**, values each frame for each of the lines, their speeds, etc. It's much easier and faster to do this than to e.g. generate all those values once and then store them in a table or an array.
 
