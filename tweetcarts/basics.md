@@ -16,6 +16,16 @@ If you're looking for some general pico-8 information, or basic effect creation,
   <tbody>
     <tr class="h1">
       <td>
+        <a href="#external-resources">External Resources</a>
+      </td>
+      <td>
+        <p>
+          Links to other sites describing tweetcarts, pico-8, and effects!
+        </p>
+      </td>
+    </tr>
+    <tr class="h1">
+      <td>
         <a href="#plasmas">Plasmas</a>
       </td>
       <td>
@@ -46,6 +56,41 @@ If you're looking for some general pico-8 information, or basic effect creation,
     </tr>
   </tbody>
 </table>
+
+
+-----
+
+
+## External Resources
+Others have made some amazing resources about tweetcarts, pico-8, and demoscene effects that are super useful! Please feel free to check them out!
+
+<div class="tweetcart-grid">
+
+<a class="tweetcart" href="https://www.lexaloffle.com/bbs/?tid=37886" title="Guide for Making Tweetcarts">
+    <img src="/img/tweetcarts/resources/guide-for-making-tweetcarts.png">
+    <span>@PrincessChooChoo</span>
+    <span>Guide for Making Tweetcarts</span>
+</a>
+
+<a class="tweetcart" href="https://rexcellentgames.com/minifying-tweetcarts/" title="Guide on minifying tweetcarts">
+    <img src="/img/tweetcarts/resources/guide-on-minifying-tweetcarts.png">
+    <span>@egordorichev</span>
+    <span>Guide on minifying tweetcarts</span>
+</a>
+
+<a class="tweetcart" href="https://demoman.net/?a=optimizing-for-tweetcarts" title="Optimizing Character-Count for Tweetcarts">
+    <img src="/img/tweetcarts/resources/optimising-for-tweetcarts.png">
+    <span>@2DArray</span>
+    <span>Optimizing Character-Count for Tweetcarts</span>
+</a>
+
+<a class="tweetcart" href="https://demoman.net/" title="Demo-Man: Interactive Pico-8 and gamedev tutorials">
+    <img src="/img/tweetcarts/resources/demo-man.png">
+    <span>@2DArray</span>
+    <span>Demo-Man: Interactive Pico-8 and gamedev tutorials</span>
+</a>
+
+</div>
 
 
 -----
