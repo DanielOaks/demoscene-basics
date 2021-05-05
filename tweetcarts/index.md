@@ -16,6 +16,6 @@ classes: tweetcart-titlepage
 
 -----
 
-{% include tweetcart-grid.html carts="basics,bluevertigo,moonandreflection,rainbowtentacles,pixtunnel,landofbsod,prideflags,owlhousespell,distancesigns" %}
+{% include tweetcart-grid.html carts="basics,bluevertigo,moonandreflection,rainbowtentacles,pixtunnel,landofbsod,prideflags,owlhousespell,distancesigns,squaretunnel" %}
 
 -----
