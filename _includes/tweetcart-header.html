@@ -1,0 +1,7 @@
+<h2>{{ include.cart.name }}</h2>
+
+<em>Author: {{ include.cart.author.name }}{% if include.cart.author.twitter %} (<a href="https://twitter.com/{{ include.cart.author.twitter }}">@{{ include.cart.author.twitter }}</a>){% endif %}</em>
+<br>
+<em>Link: <a href="{{ include.cart.link }}">{{ include.cart.link }}</a></em>
+
+<img class="screenie" src="/img/tweetcarts/{{ include.cart.imgs }}.gif" alt="{{ include.cart.title }}">

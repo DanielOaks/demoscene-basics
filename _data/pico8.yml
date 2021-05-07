@@ -235,6 +235,86 @@ tweetcarts:
 
       goto _
 
+  distantfire:
+    name: distant fire
+    imgs: distantfire
+    link: https://twitter.com/2DArray/status/1021804854006693888
+    author:
+      name: 2DArray
+      twitter: 2DArray
+    tweetcode: |-
+      m=8192p=sget
+      a={0,1,2,14,9,8,10,7}
+      cls()line(0,127,127,127,15)
+      memcpy(0,m*3,m)::_::
+      x=rnd(128)
+      y=rnd(127)
+      u=x+rnd(3)-1.5
+      v=y+rnd(2.5)
+      c=(p(x,y)+p(u,v)*2)/2.87
+      sset(x,y,c)
+      pset(x,y,a[flr(c*c/32)+1])
+      goto _
+
+    studycode: |-
+      -- flame gradient
+      a={0,1,2,14,9,8,10,7}
+
+      -- empty screen
+      cls()
+      -- this line acts as the 'fuel' that starts the rest of
+      --  the fire going up. 15 is the highest value that can
+      --  be stored in a pico-8 pixel
+      line(0,127,127,127,15)
+
+      -- the sprite sheet is at 0x0000.
+      -- the screen data is at 0x6000.
+      -- copy that 'fuel line' down to the sprite sheet,
+      --  because the sprite sheet is where we actually store
+      --  and get our flame energy values from.
+      m=8192
+      memcpy(0,m*3,m)
+
+      -- start render loop. we render a single pixel per loop
+      ::_::
+
+      -- which pixel are we rendering? we intentionally never
+      --  touch y=127 because that's where the fuel line lives
+      x=rnd(128)
+      y=rnd(127)
+
+      -- u,v is a nearby pixel underneath us that we're using
+      --  to determine the 'energy' of this pixel.
+      u=x+rnd(3)-1.5
+      v=y+rnd(2.5)
+
+      -- we're using sget() here to get the pixels from the
+      --  sprite sheet (the screen and the sprite sheet are
+      --  identical except the sprite sheet has the energy
+      --  values stored directly and the screen instead shows
+      --  colours from the above gradient based on energy).
+      -- if this pixel has energy, and the other nearby pixel
+      --  also has energy, this pixel will probably get some
+      --  more energy.
+      -- however, because of the /2.87 , if only this pixel
+      --  *or* a nearby pixel has energy then this pixel won't
+      --  get as much energy.
+      -- tweaking these values is gonna give you different
+      --  flame patterns and behaviour, much fun to be had!
+      c=(sget(x,y)+sget(u,v)*2)/2.87
+
+      -- store the new energy in the sprite sheet
+      sset(x,y,c)
+
+      -- write the new colour to the screen
+      pset(x,y,a[flr(c*c/32)+1])
+
+      -- we don't need flip() here, we're just trying to
+      --  render pixels as fast as possible and pico-8 will
+      --  grab the new frame whenever. we're never in a state
+      --  that looks bad or incomplete, so no need for flip.
+      goto _
+
   fallingsand:
     name: falling sand
     author:
