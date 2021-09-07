@@ -127,6 +127,116 @@ Others have made some amazing resources about tweetcarts, pico-8, and demoscene 
 
 
 
+## _draw() vs goto
+When you look at tweetcarts for the first time, you may notice that almost all of them use something like this:
+
+```lua
+::_::
+  -- code here
+goto _
+```
+
+instead of this:
+
+```lua
+function _draw()
+  -- code here
+end
+```
+
+But why? Let's dig into it.
+
+<hr class="smol">
+
+When used in a tweetcart, the `_draw()` function does one very specific thing. It runs the code you put inside it, runs `flip()` to push it to the screen, and then runs that code again. If your code uses more than 100% CPU, it slows the drawing down to 15fps to compensate (this is what `flip()` does).
+
+For most pico-8 carts, this works fine. This is perfect, and exactly how you want your drawing code to be run.
+
+Let's assume that your tweetcart also wants to do this. Here's a couple of example carts that do exactly the same thing.
+
+using `_draw()`:
+
+```lua
+function _draw()
+cls()
+circ(64,64,12,7)
+end
+```
+
+using `goto`:
+
+```lua
+::_::
+cls()
+circ(64,64,12,7)
+flip()goto _
+```
+
+Even though they're both doing exactly the same thing, the `goto` example is 2 characters shorter. That's two more characters of math and effect you can squeeze in!
+
+<hr class="smol">
+
+But when writing effects, sometimes you don't need to use `flip()`.
+
+If your effect is written in a way that means the screen never gets into a bad state (e.g. you never call `cls()` to clear the screen), then pico-8 can decide when to push the newest frame on its own, and it'll still look good.
+
+Now, here's where using `goto` can be really interesting.
+
+<hr class="smol">
+
+If your screen is never in a bad state, then you can just leave the `flip()` out.
+
+There are two ways you'll tend to see `goto` being used, and those are:
+
+1. Each 'drawing loop' writes the entire screen.
+2. Each 'drawing loop' only writes one pixel, or a small area of the screen.
+
+With **(1)**, even if you need to call `flip()` it still ends up shorter and doing it with `_draw()` would be, and:
+
+It's really hard to do **(2)** in a short way while using the `_draw()` function.
+
+As an example, let's write up a cart that sets random pixels on the screen to random colours.
+
+Here's how the effect looks:
+
+<img class="screenie" src="/img/tweetcarts/basics-goto-1.gif">
+
+<hr class="smol">
+
+Here's that cart implemented using `goto`:
+
+```lua
+::a::
+pset(rnd(128),rnd(128),rnd(16))
+goto a
+```
+
+On every loop, it sets one pixel to a new random colour. Simple and effective!
+
+<hr class="smol">
+
+To do that nicely in a `_draw()` function would be difficult. You'd need to figure out how many pixels could be drawn each loop, and then only draw that many pixels per loop, or else get capped at 15fps. Here's the equivalent code but using `_draw()`:
+
+```lua
+function _draw()
+  for _=1,6000 do
+    pset(rnd(128),rnd(128),rnd(16))
+  end
+end
+```
+
+I've indented it here for clarity, but even without the indenting it's clear that there's a lot more to do. The `_draw()` version _is_ more configurable, but in tweetcarts we're usually optimising for short character counts rather than tweakability.
+
+<hr class="smol">
+
+In short, you'll see `goto` used much more than `_draw()` in tweetcarts because it's shorter and it gives you more control.
+
+Take a look at some of these tweetcarts to see examples of both in action:
+
+{% include tweetcart-grid.html carts="squaretunnel,landofbsod,distancesigns" %}
+
+
+
 ## Changing The Display Palette
 Here's pico-8's default display palette:
 {% include pico8-palette.html colours="0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15" %}
