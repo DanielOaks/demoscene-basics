@@ -15,3 +15,5 @@ gem "git", "~> 1.5"
 gem "jekyll-sitemap", "~> 1.2"
 
 gem "kramdown-parser-gfm"
+
+gem "webrick", "~> 1.7"
