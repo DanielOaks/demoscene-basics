@@ -26,11 +26,21 @@ If you're looking for some general pico-8 information, or basic effect creation,
     </tr>
     <tr class="h1">
       <td>
+        <a href="#_draw-vs-goto">_draw() vs goto</a>
+      </td>
+      <td>
+        <p>
+          Describes why goto is used a lot more than the _draw() function.
+        </p>
+      </td>
+    </tr>
+    <tr class="h1">
+      <td>
         <a href="#changing-the-display-palette">Changing The Display Palette</a>
       </td>
       <td>
         <p>
-          Describes changing how pico-8 shows colours on the display
+          Describes changing how pico-8 shows colours on the display.
         </p>
       </td>
     </tr>
@@ -40,7 +50,7 @@ If you're looking for some general pico-8 information, or basic effect creation,
       </td>
       <td>
         <p>
-          Describes ways to clear the background when rendering new frames
+          Describes ways to clear the background when rendering new frames.
         </p>
       </td>
     </tr>
@@ -182,9 +192,9 @@ If your effect is written in a way that means the screen never gets into a bad s
 
 Now, here's where using `goto` can be really interesting.
 
-<hr class="smol">
-
 If your screen is never in a bad state, then you can just leave the `flip()` out.
+
+<hr class="smol">
 
 There are two ways you'll tend to see `goto` being used, and those are:
 
@@ -226,6 +236,8 @@ end
 ```
 
 I've indented it here for clarity, but even without the indenting it's clear that there's a lot more to do. The `_draw()` version _is_ more configurable, but in tweetcarts we're usually optimising for short character counts rather than tweakability.
+
+And, every time you change how complex that `pset()` function is, you'll need to check how much CPU it's using (Ctrl+P while running the cart) and adjust how many loops happen per frame.
 
 <hr class="smol">
 
