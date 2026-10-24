@@ -4,9 +4,9 @@ title: Basics - PICO-8 Tweetcart Studies
 ---
 
 ## Basics
-Here are some basic effects and techniques that are used in tweetcarts.
+Here are some basic effects and techniques used in these carts.
 
-If you're looking for some general pico-8 information, or basic effect creation, [the demobasics page](https://demobasics.pixienop.net/) goes through creating a few traditional carts from scratch.
+If you're looking for some general pico-8 information, or basic effect creation, [the demobasics page](https://demobasics.pixienop.net/) goes through creating effects from scratch, starting from time and the sin/cos functions.
 
 <table class="sections">
   <colgroup>
