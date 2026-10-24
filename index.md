@@ -106,7 +106,7 @@ And with all that out of the way, let's get started with a tool!
 ## PICO-8
 This is the first platform we'll try out. [Pico-8](https://www.lexaloffle.com/pico-8.php) is one of many 'fantasy consoles'. A [Fantasy Console](https://github.com/paladin-t/fantasy) is a constrained software platform with integrated development tools – that is, a small piece of software that includes a code editor, music editor, etc, and lets you run your creations!
 
-It's an absolutely adorable little platform, and it's a really tightly-designed and clean system. There's also a free editor at https://www.pico-8-edu.com/ which you can use to write carts, save them, load them, and practice everything below!
+It's an absolutely adorable little platform, and it's a really tightly-designed and clean system. There's also a free editor at [pico-8-edu.com](https://www.pico-8-edu.com/) which you can use to write carts, save them, load them, and practice everything below!
 
 
 
