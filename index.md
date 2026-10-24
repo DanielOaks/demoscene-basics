@@ -12,9 +12,7 @@ Today, it's not that hard to get started writing demo effects, and stringing the
 
 Optimally, you should know a bit of programming before you dive into this. I try to take it slow but knowing what functions, variables, and just what code generally looks like will definitely be useful.
 
-My name's Daniel, or [pixienop](https://twitter.com/pixienop). If you have any questions, issues, or just wanna say hi, feel free to DM me! I've made one demo so far with another one in the works, so I know how intimidating just getting started can be. Hope this guide's useful!
-
-**Note:** This is very much a work-in-progress. When writing a guide like this, it's also hard to see whether you're being too simple or too complicated as you write the different sections. If you have any feedback, please <a href="https://twitter.com/pixienop">DM me</a>~
+My name's Daniel, or [pixienop](https://pixienop.net). If you have any questions, issues, or just wanna say hi, feel free to DM me! I've made one demo so far with another one in the works, so I know how intimidating just getting started can be. Hope this guide's useful!
 
 -----
 
@@ -108,7 +106,7 @@ And with all that out of the way, let's get started with a tool!
 ## PICO-8
 This is the first platform we'll try out. [Pico-8](https://www.lexaloffle.com/pico-8.php) is one of many 'fantasy consoles'. A [Fantasy Console](https://github.com/paladin-t/fantasy) is a constrained software platform with integrated development tools – that is, a small piece of software that includes a code editor, music editor, etc, and lets you run your creations!
 
-Now, PICO-8 isn't free or open source, but [the developer](https://twitter.com/lexaloffle) pretty actively supports the scene, it's an absolutely adorable little platform, and it's a really tightly-designed and clean system. I'll try to include alternative code to run on other FCs as well (open to other contributions here, just [throw me](https://twitter.com/pixienop) some running code~).
+It's an absolutely adorable little platform, and it's a really tightly-designed and clean system. There's also a free editor at https://www.pico-8-edu.com/ which you can use to write carts, save them, load them, and practice everything below!
 
 
 
@@ -126,9 +124,9 @@ Here's a quick list of useful commands:
 - `load <filename>`: Load the given cartridge.
 - `save [filename]`: Save as the given cart.
 - `run`: Run the current cartridge (the current code, gfx, map, sfx, and music).
-- `splore`: Start the Pico-8 explorer, which lets you run carts from the internet.
+- `splore`: Start the Pico-8 explorer, which lets you run carts from the internet (only on the full version, not the free web edition).
 
-To enter the development interface, press Escape. You should see something like this show up:
+To enter the development interface, press the Escape button. You should see something like this show up:
 
 <img class="screenie" src="/img/p8-code.png" alt="The Pico-8 Code Interface">
 
