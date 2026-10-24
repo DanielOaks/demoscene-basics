@@ -64,7 +64,8 @@ Temporary Items
 _site/
 .sass-cache/
 .jekyll-metadata
-
+/vendor
+/.bundle
 
 ## build stuff
 _site.zip
